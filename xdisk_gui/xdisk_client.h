@@ -1,14 +1,13 @@
 #pragma once
+
 #include <QObject>
 #include <string>
-class XDiskClient:public QObject
-{
+
+class XDiskClient : public QObject {
 Q_OBJECT
 
 public:
-    //单件
-    static XDiskClient*Get()
-    {
+    static XDiskClient *Get() {
         static XDiskClient xc;
         return &xc;
     }
@@ -29,11 +28,14 @@ public:
     ///@brief 上传文件请求
     ///@para serverpath 远端文件的相对路径
     ///@para localdir 本地存储的目录
-    void Download(std::string serverpath,std::string localdir);
+    void Download(std::string serverpath, std::string localdir);
 
     void set_server_ip(std::string ip) { this->server_ip_ = ip; }
+
     void set_port(int port) { this->server_port_ = port; }
+
     void set_server_root(std::string root) { this->server_root_ = root; }
+
 signals:
     void SDir(std::string dirs);
 
@@ -51,5 +53,6 @@ private:
 
     ///服务器端口
     int server_port_ = 0;
+
     XDiskClient() {};
 };
