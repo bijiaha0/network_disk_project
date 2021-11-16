@@ -3,11 +3,10 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-IF (CMAKE_HOST_APPLE)
-    set(Qt5_DIR "/Users/bijh/Qt5.13.0/5.13.0/clang_64/lib/cmake/Qt5")
-ENDIF ()
-
-find_package(Qt5 COMPONENTS
+set(Qt5_DIR "/Users/bijh/Qt5.13.0/5.13.0/clang_64/lib/cmake/Qt5")
+find_package(
+        Qt5
+        COMPONENTS
         Core
         Gui
         Widgets

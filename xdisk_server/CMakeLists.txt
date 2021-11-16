@@ -2,7 +2,7 @@
 aux_source_directory(. SOURCE_FILES)
 add_executable(xdisk_server ${SOURCE_FILES})
 
-# 指定编译 target 所需要的头文件
+# 指定编译 target 所需要的头文件。PUBLIC 和 INTERFACE 具有依赖传递性，而 PRIVATE 没有。
 target_include_directories(xdisk_server PUBLIC ../build/include)
 
 # 1、如果 target 是一个 library，该命令可以用来指定依赖本仓库的 target 还需要链接另外的仓库，用于解决循环依赖。
