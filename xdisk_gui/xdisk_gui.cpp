@@ -1,5 +1,3 @@
-
-
 #include "xdisk_gui.h"
 #include <QMessageBox>
 #include <QFileDialog>
@@ -8,24 +6,15 @@
 
 using namespace std;
 
-XDiskGUI::XDiskGUI(QWidget *parent)
-        : QWidget(parent) {
+XDiskGUI::XDiskGUI(QWidget *parent) : QWidget(parent) {
     ui.setupUi(this);
     XDiskClient::Get()->Init();
-
     //注册信号支持的类型
     qRegisterMetaType<std::string>("std::string");
-
     //绑定目录获取的信号
-    QObject::connect(XDiskClient::Get(), SIGNAL(SDir(std::string)),
-                     this, SLOT(UpdateDir(std::string)));
-
-    QObject::connect(XDiskClient::Get(), SIGNAL(SUploadComplete()),
-                     this, SLOT(Refresh()));
-
-    QObject::connect(XDiskClient::Get(), SIGNAL(SDownloadComplete()),
-                     this, SLOT(DownloadComplete()));
-
+    QObject::connect(XDiskClient::Get(), SIGNAL(SDir(std::string)), this, SLOT(UpdateDir(std::string)));
+    QObject::connect(XDiskClient::Get(), SIGNAL(SUploadComplete()), this, SLOT(Refresh()));
+    QObject::connect(XDiskClient::Get(), SIGNAL(SDownloadComplete()), this, SLOT(DownloadComplete()));
     Refresh();
 }
 
@@ -34,7 +23,6 @@ void XDiskGUI::DownloadComplete() {
 }
 
 void XDiskGUI::UpdateDir(std::string dirs) {
-
     //QMessageBox::information(this, "", dirs.c_str());
     /// "file1,1024;file2,4096;file3.zip,10240"
     QString str = dirs.c_str();
@@ -92,7 +80,6 @@ void XDiskGUI::Download() {
     filepath += "/";
     filepath += filename;
     XDiskClient::Get()->Download(filepath, localpath.toStdString());
-
 }
 
 void XDiskGUI::Upload() {
