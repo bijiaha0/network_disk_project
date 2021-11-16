@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>XDiskGUIClass</class>
+    <widget class="QWidget" name="XDiskGUIClass">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>612</width>
+                <height>433</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>XDiskGUI</string>
+        </property>
+        <widget class="QPushButton" name="refleshButton">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>170</y>
+                    <width>81</width>
+                    <height>41</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>刷新</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" name="uploadButton">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>220</y>
+                    <width>81</width>
+                    <height>41</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>上传</string>
+            </property>
+        </widget>
+        <widget class="QTableWidget" name="filelistWidget">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>481</width>
+                    <height>431</height>
+                </rect>
+            </property>
+            <property name="selectionBehavior">
+                <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <column>
+                <property name="text">
+                    <string>文件名</string>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>文件大小</string>
+                </property>
+            </column>
+        </widget>
+        <widget class="QLineEdit" name="ipEdit">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>80</y>
+                    <width>113</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>127.0.0.1</string>
+            </property>
+        </widget>
+        <widget class="QSpinBox" name="portBox">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>130</y>
+                    <width>111</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="maximum">
+                <number>65535</number>
+            </property>
+            <property name="value">
+                <number>21002</number>
+            </property>
+        </widget>
+        <widget class="QLineEdit" name="pathEdit">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>30</y>
+                    <width>113</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>./server_root</string>
+            </property>
+        </widget>
+        <widget class="QLabel" name="label">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>10</y>
+                    <width>111</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>服务器路径</string>
+            </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>60</y>
+                    <width>111</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>服务器IP</string>
+            </property>
+        </widget>
+        <widget class="QLabel" name="label_3">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>110</y>
+                    <width>111</width>
+                    <height>16</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>服务器端口</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" name="downloadButton">
+            <property name="geometry">
+                <rect>
+                    <x>490</x>
+                    <y>280</y>
+                    <width>81</width>
+                    <height>41</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>下载</string>
+            </property>
+        </widget>
+    </widget>
+    <layoutdefault spacing="6" margin="11"/>
+    <resources>
+        <include location="xdisk_gui.qrc"/>
+    </resources>
+    <connections>
+        <connection>
+            <sender>refleshButton</sender>
+            <signal>clicked()</signal>
+            <receiver>XDiskGUIClass</receiver>
+            <slot>Refresh()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>519</x>
+                    <y>29</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>611</x>
+                    <y>415</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>uploadButton</sender>
+            <signal>clicked()</signal>
+            <receiver>XDiskGUIClass</receiver>
+            <slot>Upload()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>548</x>
+                    <y>110</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>662</x>
+                    <y>259</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>downloadButton</sender>
+            <signal>clicked()</signal>
+            <receiver>XDiskGUIClass</receiver>
+            <slot>Download()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>535</x>
+                    <y>307</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>676</x>
+                    <y>381</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
+    <slots>
+        <slot>Refresh()</slot>
+        <slot>Upload()</slot>
+        <slot>Download()</slot>
+    </slots>
+</ui>
