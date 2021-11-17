@@ -38,8 +38,6 @@ void XDiskGUI::UpdateDir(std::string dirs) {
         ui.filelistWidget->setItem(i, 0, new QTableWidgetItem(fileinfo[0]));
         ui.filelistWidget->setItem(i, 1, new QTableWidgetItem(tr("%1Byte").arg(fileinfo[1])));
     }
-
-
 }
 
 void XDiskGUI::UpdateServerInfo() {
@@ -56,7 +54,6 @@ void XDiskGUI::Refresh() {
     UpdateServerInfo();
     XDiskClient::Get()->GetDir();
     //QMessageBox::information(this, "", "Refresh");
-
     //1 连接服务器
     //2 设置回调
 }
@@ -69,9 +66,11 @@ void XDiskGUI::Download() {
         QMessageBox::information(this, "", QString::fromLocal8Bit("请选择下载文件"));
         return;
     }
+
     //获取选择的文件名
     auto item = ui.filelistWidget->item(row, 0);
     string filename = item->text().toStdString();
+
     //获取下载路径
     QString localpath = QFileDialog::getExistingDirectory(this, QString::fromLocal8Bit("请选择下载路径"));
     if (localpath.isEmpty())
@@ -87,12 +86,6 @@ void XDiskGUI::Upload() {
     QString filename = QFileDialog::getOpenFileName(this, QString::fromLocal8Bit("请选择上传文件"));
     if (filename.isEmpty())
         return;
-
     UpdateServerInfo();
     XDiskClient::Get()->Upload(filename.toStdString());
-    ////插入到列表
-    //ui.filelistWidget->insertRow(0); //插入在开头位置
-    //ui.filelistWidget->setItem(0, 0, new QTableWidgetItem(filename));
-    //ui.filelistWidget->setItem(0, 1, new QTableWidgetItem(tr("%1Byte").arg(1900)));
-
 }

@@ -1,7 +1,3 @@
-//
-// Created by bijh on 2021/11/16.
-//
-
 #ifndef QT_PROJECT_XDISK_GUI_H
 #define QT_PROJECT_XDISK_GUI_H
 

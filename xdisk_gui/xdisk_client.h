@@ -43,7 +43,6 @@ signals:
 
     void SDownloadComplete();
 
-
 private:
     /// 服务器IP
     std::string server_ip_ = "";
