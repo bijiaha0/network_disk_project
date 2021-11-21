@@ -58,7 +58,7 @@ private:
 
     struct bufferevent *bev_ = 0;
 
-    //数据包缓存
+    ///数据包缓存
     XMsg msg_;
 
     //是否接收消息，接收的消息会调用 void ReadCB(const XMsg *msg)

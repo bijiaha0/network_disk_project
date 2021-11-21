@@ -56,7 +56,9 @@ void XComTask::BeginWrite() {
 }
 
 void XComTask::ReadCB() {
-    for (;;)//确保边缘触发是能读取所有数据
+    //水平出发肯定可以读取所有数据，但是边缘触发只进来一次
+    //确保边缘触发是能读取所有数据
+    for (;;)
     {
         if (!is_recv_msg_) {
             int len = bufferevent_read(bev_, read_buf_, sizeof(read_buf_));
@@ -69,7 +71,7 @@ void XComTask::ReadCB() {
         if (!msg_.data) {
             int headsize = sizeof(XMsgHead);
             int len = bufferevent_read(bev_, &msg_, headsize);
-            if (len <= 0)return;
+            if (len <= 0) return;
             if (len != headsize) {
                 cerr << "msg head recv error" << endl;
                 return;
