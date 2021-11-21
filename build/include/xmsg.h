@@ -26,17 +26,17 @@ enum MsgType
     MSG_MAX_TYPE,
 };
 
-//消息最大字节数
+///消息最大字节数
 #define MSG_MAX_SIZE 1000000
 
-//消息头
+///消息头
 struct XCOM_API XMsgHead
 {
     MsgType type;
     int size = 0;
 };
 
-//约定每个消息必须包含内容，没有内容使用OK
+///约定每个消息必须包含内容，没有内容使用OK
 struct XCOM_API XMsg :public XMsgHead
 {
     //存储消息内容
