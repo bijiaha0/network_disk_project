@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-//接收到消息的回调
+///接收到消息的回调
 bool XUploadTask::ReadCB(const XMsg *msg)
 {
     switch (msg->type)
@@ -20,6 +20,7 @@ bool XUploadTask::ReadCB(const XMsg *msg)
     }
     return true;
 }
+
 ///写入数据回调函数
 void XUploadTask::WriteCB()
 {
