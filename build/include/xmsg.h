@@ -39,9 +39,10 @@ struct XCOM_API XMsgHead
 //约定每个消息必须包含内容，没有内容使用OK
 struct XCOM_API XMsg :public XMsgHead
 {
-    char *data = 0;     //存储消息内容
-    int recved = 0;     //已经接收的消息字节数
-
+    //存储消息内容
+    char *data = 0;
+    //已经接收的消息字节数
+    int recved = 0;
 };
 
 #endif
