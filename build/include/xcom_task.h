@@ -46,9 +46,9 @@ public:
     void set_is_recv_msg(bool isrecv) { this->is_recv_msg_ = isrecv; }
 
 protected:
-
     //¶ÁÈ¡»º´æ
     char read_buf_[4096] = {0};
+
 private:
     /// ·şÎñÆ÷IP
     std::string server_ip_ = "";
