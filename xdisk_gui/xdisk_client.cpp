@@ -12,17 +12,21 @@ bool XDiskClient::Init() {
     return true;
 }
 
-static void DirCB(string dirs) {
-    cout << dirs << endl;
-    XDiskClient::Get()->SDir(dirs);
-}
-
 static void UploadCB() {
     cout << "UploadCB" << endl;
     XDiskClient::Get()->SUploadComplete();
 }
 
-////////////////////////////////////////////////////////////
+static void DownloadCB() {
+    cout << "SDownloadComplete" << endl;
+    XDiskClient::Get()->SDownloadComplete();
+}
+
+static void DirCB(string dirs) {
+    cout << dirs << endl;
+    XDiskClient::Get()->SDir(dirs);
+}
+
 ///@brief 上传文件请求
 ///@para filepath 本地文件路径
 void XDiskClient::Upload(std::string filepath) {
@@ -34,12 +38,6 @@ void XDiskClient::Upload(std::string filepath) {
     XThreadPool::Get()->Dispatch(task);
 }
 
-static void DownloadCB() {
-    cout << "SDownloadComplete" << endl;
-    XDiskClient::Get()->SDownloadComplete();
-}
-
-////////////////////////////////////////////////////////////
 ///@brief 上传文件请求
 ///@para serverpath 远端文件的相对路径
 ///@para localdir 本地存储的目录
@@ -53,7 +51,6 @@ void XDiskClient::Download(std::string serverpath, std::string localdir) {
     XThreadPool::Get()->Dispatch(task);
 }
 
-////////////////////////////////////////////////////////////
 ///@brief 获取目录下的文件列表，只是请求消息到服务端
 void XDiskClient::GetDir() {
     cout << "GetDir " << server_ip_ << ":" << server_port_ << "/" << server_root_ << endl;
