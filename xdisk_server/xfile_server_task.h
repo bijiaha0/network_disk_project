@@ -1,11 +1,11 @@
 #ifndef XFILE_SERVER_TASK_H
 #define XFILE_SERVER_TASK_H
+
 #include "xcom_task.h"
 #include <fstream>
 #include <mutex>
 
-class XFileServerTask :public XComTask
-{
+class XFileServerTask : public XComTask {
 public:
     //接收到消息的回调
     virtual bool ReadCB(const XMsg *msg);
@@ -16,20 +16,19 @@ public:
     ///写入数据回调函数
     virtual void WriteCB();
 
-    static void set_cur_dir(std::string dir)
-    {
+    static void set_cur_dir(std::string dir) {
         cur_dir_mux_.lock();
         cur_dir_ = dir;
         cur_dir_mux_.unlock();
     }
 
-    static std::string cur_dir()
-    {
+    static std::string cur_dir() {
         cur_dir_mux_.lock();
         std::string dir = cur_dir_;
         cur_dir_mux_.unlock();
         return dir;
     }
+
 private:
     //处理目录获取的消息，返回目录列表
     void GetDir(const XMsg *msg);
@@ -57,7 +56,6 @@ private:
     std::ifstream ifs_;
 
     std::string filepath_;
-
 
 };
 

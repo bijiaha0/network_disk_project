@@ -41,19 +41,21 @@ void XDiskGUI::UpdateDir(std::string dirs) {
 }
 
 void XDiskGUI::UpdateServerInfo() {
-    //服务器路径 服务器IP 服务器端口
     string ip = ui.ipEdit->text().toStdString();
     string root = ui.pathEdit->text().toStdString();
     int port = ui.portBox->value();
+
+    ///服务器端口
     XDiskClient::Get()->set_port(port);
+    ///服务器IP
     XDiskClient::Get()->set_server_ip(ip);
+    ///服务器路径
     XDiskClient::Get()->set_server_root(root);
 }
 
 void XDiskGUI::Refresh() {
     UpdateServerInfo();
     XDiskClient::Get()->GetDir();
-    //QMessageBox::information(this, "", "Refresh");
     //1 连接服务器
     //2 设置回调
 }

@@ -46,12 +46,9 @@ signals:
 private:
     /// 服务器IP
     std::string server_ip_ = "";
-
     ///服务器的目录
     std::string server_root_ = "";
-
     ///服务器端口
     int server_port_ = 0;
-
     XDiskClient() {};
 };

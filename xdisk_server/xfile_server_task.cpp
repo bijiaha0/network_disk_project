@@ -5,6 +5,7 @@
 using namespace std;
 string XFileServerTask::cur_dir_ = "./";
 std::mutex XFileServerTask::cur_dir_mux_;
+
 //处理目录获取的消息，返回目录列表
 void XFileServerTask::GetDir(const XMsg *msg)
 {
@@ -23,6 +24,7 @@ void XFileServerTask::GetDir(const XMsg *msg)
     resmsg.data = (char*)dir.c_str();
     Write(&resmsg);
 }
+
 //处理客户端的上传请求
 void XFileServerTask::Upload(const XMsg *msg)
 {
@@ -130,6 +132,7 @@ void XFileServerTask::ReadCB(void *data, int size)
         Write(&resmsg);
     }
 }
+
 bool XFileServerTask::ReadCB(const XMsg *msg)
 {
     switch (msg->type)
