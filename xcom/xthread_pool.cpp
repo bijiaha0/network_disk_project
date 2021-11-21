@@ -18,7 +18,7 @@ void XThreadPool::Dispatch(XTask *task) {
     t->Activate();
 }
 
-//初始化所有线程并启动线程
+//线程池初始化所有线程，并启动线程
 void XThreadPool::Init(int thread_count) {
     this->thread_count_ = thread_count;
     this->last_thread_ = -1;

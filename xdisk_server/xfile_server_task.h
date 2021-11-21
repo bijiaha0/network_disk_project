@@ -3,6 +3,7 @@
 #include "xcom_task.h"
 #include <fstream>
 #include <mutex>
+
 class XFileServerTask :public XComTask
 {
 public:

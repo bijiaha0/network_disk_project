@@ -31,6 +31,7 @@ void XThread::Notify(int fd, short which) {
     task = tasks_.front(); //先进先出
     tasks_.pop_front();
     tasks_mutex_.unlock();
+    //任务初始化
     task->Init();
 }
 
@@ -62,14 +63,17 @@ void XThread::Start() {
 
 //安装线程，初始化event_base和管道监听事件用于激活
 bool XThread::Setup() {
-    //创建的管道 不能用send recv读取 read write
+    // 创建的管道 不能用send recv读取 read write
     int fds[2];
+
+    // pipe函数会建立管道，并将文件描述词由参数fds数组返回。
+    // fds[0]为管道里的读取端
+    // fds[1]为管道里的写入端。
     if (pipe(fds)) {
         cerr << "pipe failed!" << endl;
         return false;
     }
 
-    //读取绑定到event事件中，写入要保存
     notify_send_fd_ = fds[1];
 
     //创建libevent上下文（无锁）
@@ -85,7 +89,6 @@ bool XThread::Setup() {
     //添加管道监听事件，用于激活线程执行任务
     event *ev = event_new(base_, fds[0], EV_READ | EV_PERSIST, NotifyCB, this);
     event_add(ev, 0);
-
     return true;
 }
 
