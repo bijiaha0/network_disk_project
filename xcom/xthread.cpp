@@ -22,6 +22,7 @@ void XThread::Notify(int fd, short which) {
     if (re <= 0)
         return;
     cout << id << " thread " << buf << endl;
+
     XTask *task = NULL;
     //获取任务，并初始化任务
     tasks_mutex_.lock();
@@ -55,17 +56,17 @@ void XThread::Activate() {
 
 ///启动线程
 void XThread::Start() {
+    ///初始化event_base和管道监听事件用于激活
     Setup();
     //启动线程
     thread th(&XThread::Main, this);
-
     //断开与主线程联系
     th.detach();
 }
 
 ///安装线程，初始化event_base和管道监听事件用于激活
 bool XThread::Setup() {
-    // 创建的管道 不能用send recv读取 read write
+    // 创建的管道
     int fds[2];
 
     // pipe函数会建立管道，并将文件描述词由参数fds数组返回。
