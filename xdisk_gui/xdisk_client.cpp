@@ -63,8 +63,5 @@ void XDiskClient::GetDir() {
     task->set_server_root(server_root_);
     task->DirCB = DirCB;
     //现在不能操作，task未初始化。task没有event_base
-
     XThreadPool::Get()->Dispatch(task);
-
-
 }

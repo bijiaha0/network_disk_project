@@ -12,8 +12,11 @@ XDiskGUI::XDiskGUI(QWidget *parent) : QWidget(parent) {
     //注册信号支持的类型
     qRegisterMetaType<std::string>("std::string");
     //绑定目录获取的信号
+    ///上传
     QObject::connect(XDiskClient::Get(), SIGNAL(SDir(std::string)), this, SLOT(UpdateDir(std::string)));
+    ///刷新
     QObject::connect(XDiskClient::Get(), SIGNAL(SUploadComplete()), this, SLOT(Refresh()));
+    ///下载
     QObject::connect(XDiskClient::Get(), SIGNAL(SDownloadComplete()), this, SLOT(DownloadComplete()));
     Refresh();
 }
