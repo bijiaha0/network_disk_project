@@ -35,7 +35,7 @@ private:
     ///线程数量
     int thread_count_ = 0;
 
-    ///上一次分发得到线程，用于轮询
+    ///上一次分发的线程，用于轮询
     int last_thread_ = -1;
 
     ///程池线程队列
