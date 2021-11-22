@@ -15,9 +15,10 @@ XCOM_API std::string GetDirData(std::string path) {
         return data;
     chdir(dir);
     char buf[1024] = {0};
+
     while ((entry = readdir(dp)) != NULL) {
         lstat(entry->d_name, &statbuf);
-        if (S_ISDIR(statbuf.st_mode))continue;
+        if (S_ISDIR(statbuf.st_mode)) continue;
         sprintf(buf, "%s,%ld;", entry->d_name, statbuf.st_size);
         data += buf;
     }

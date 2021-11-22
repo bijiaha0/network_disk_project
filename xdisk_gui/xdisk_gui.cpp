@@ -32,6 +32,7 @@ void XDiskGUI::UpdateDir(std::string dirs) {
     str = str.trimmed();
     if (str.isEmpty())
         return;
+
     QStringList filestr = str.split(';');
     ui.filelistWidget->setRowCount(filestr.size());
     for (int i = 0; i < filestr.size(); i++) {

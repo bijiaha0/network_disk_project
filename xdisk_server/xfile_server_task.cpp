@@ -9,12 +9,13 @@ std::mutex XFileServerTask::cur_dir_mux_;
 //处理目录获取的消息，返回目录列表
 void XFileServerTask::GetDir(const XMsg *msg)
 {
-    if (!msg->data)return;
+    if (!msg->data) return;
     string root = msg->data;
     if (root.empty())
     {
         root = "./";
     }
+
     set_cur_dir(root);
     //string dir = "file1,1024;file2,4096;file3.zip,10240";
     string dir = GetDirData(root);
